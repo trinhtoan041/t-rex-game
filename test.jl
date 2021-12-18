@@ -1,3 +1,4 @@
+#khoi tao man hinh choi game
 HEIGHT = 300
 WIDTH = 600
 speed = 5
@@ -16,14 +17,14 @@ gameover= false
 gameoverimg = Actor("GameOver")
 gameoverimg.pos =(130,115)
 score = 0
-function collid()
+function collid() # xu li va cham
     global gameover
     if collide(dino, tree) 
         gameover = true
 
     end
 end
-function draw(g::Game)
+function draw(g::Game) # ve nhan vat
     draw(dino)
     draw(tree)
     draw(map)
@@ -42,7 +43,7 @@ function draw(g::Game)
     
 end
 
-function update()
+function update() #update cac ham 
  
     update_map()
     update_tree()
@@ -51,7 +52,7 @@ function update()
     collid()
     
 end
-function update_map()
+function update_map() # map chuyen dong
     
     if gameover==false
         map.x = map.x- speed
@@ -63,7 +64,7 @@ function update_map()
  end
      
  
- function update_tree()
+ function update_tree() # cay chuyen dong
     if gameover ==false
         tree.x = tree.x-speed
         if tree.x <0
@@ -73,17 +74,17 @@ function update_map()
     end
 end
 
- function update_dino()
+ function update_dino() # khong long nhay
     global dino_vy
     uy = dino_vy
     dino_vy = dino_vy + GRAVITY  
     dino.x = 0
     if dino.y< 210
-        dino.y += Int(round((uy + dino_vy)/3))
+        dino.y += Int(round((uy + dino_vy)/3)) # van toc roi
     end
  end
 
- function reset()
+ function reset() # reset game
     global dino, map , tree
     dino = Actor("dinosaur")
     tree.pos = (550,220)
@@ -98,7 +99,7 @@ end
     score =0
  end
 
- function on_key_down(g::Game)
+ function on_key_down(g::Game) # ban phim
     if g.keyboard.SPACE
         if dino.y >= 210
             dino.y -=125
